@@ -4,18 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#17161a">
+<link rel="canonical" href="https://clausper.kenawak.dev/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Ken (kenawak)">
+<meta name="application-name" content="Clausper">
 <link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <script>try{if(localStorage.getItem("clausper-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
-<title>Clausper</title>
-<meta name="description" content="Clausper: a voice mod for Claude Code. Hear a spoken summary of every reply, see captions and the files that changed, and say your next prompt.">
+<title>Clausper — Voice mod for Claude Code</title>
+<meta name="description" content="Clausper is a voice mod for Claude Code. It speaks a short summary of every reply, captions it live, lists the files that changed, and lets you answer by voice. Runs on your subscription; your voice stays on your Mac.">
+<meta property="og:site_name" content="Clausper">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="Clausper: hear what Claude did, say what's next">
 <meta property="og:description" content="A voice mod for Claude Code. Spoken summaries, live captions, a clickable list of changed files, and hands-free voice prompts. Runs on your subscription; your voice stays on your Mac.">
 <meta property="og:image" content="https://clausper.kenawak.dev/assets/og.jpg">
 <meta property="og:url" content="https://clausper.kenawak.dev/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Clausper — Voice mod for Claude Code">
+<meta name="twitter:description" content="Clausper is a voice mod for Claude Code. It speaks a short summary of every reply, captions it live, lists the files that changed, and lets you answer by voice. Runs on your subscription; your voice stays on your Mac.">
+<meta name="twitter:image" content="https://clausper.kenawak.dev/assets/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"SoftwareApplication","name":"Clausper","alternateName":"Clausper voice mod for Claude Code","url":"https://clausper.kenawak.dev/","applicationCategory":"DeveloperApplication","operatingSystem":"macOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT","description":"A voice mod for Claude Code that speaks a short summary of every reply, captions it live, lists the files that changed, and lets you answer by voice.","downloadUrl":"https://github.com/kenawak/clausper","softwareVersion":"0.2.2","author":{"@type":"Person","name":"Ken","url":"https://github.com/kenawak"},"image":"https://clausper.kenawak.dev/assets/og.jpg","sameAs":["https://github.com/kenawak/clausper"]},
+ {"@type":"WebSite","name":"Clausper","url":"https://clausper.kenawak.dev/"},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Does Clausper cost extra?","acceptedAnswer":{"@type":"Answer","text":"No. Summaries are written by Haiku through your own Claude Code session, so they count against the subscription you already have. There is no API key to buy."}},
+  {"@type":"Question","name":"Where does my voice go?","acceptedAnswer":{"@type":"Answer","text":"Nowhere. Recording uses sox and transcription uses whisper.cpp, both running on your Mac. Clausper adds no network calls of its own."}},
+  {"@type":"Question","name":"Does Clausper work on Linux or Windows?","acceptedAnswer":{"@type":"Answer","text":"The pane, captions and change list work anywhere Claude Code runs. Speech uses the macOS system voice today."}}
+ ]}
+]}
+</script>
 </head>
 <body>
 <div id="root"></div>
