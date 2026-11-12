@@ -6,6 +6,15 @@ export type Release = { version: string; date: string; title: string; intro?: st
 // Newest first. Keep in step with CHANGELOG.md in the mod repository.
 export const RELEASES: Release[] = [
   {
+    version: '0.2.4', date: '12 Nov 2026', title: 'No binaries, no encoded data',
+    groups: [
+      { kind: 'changed', items: [
+        'The cue tones are synthesized in code when the mod loads, so the source holds neither .wav files nor base64 strings.',
+        'The setup hint no longer embeds a download URL; the README says where the model file comes from.',
+      ] },
+    ],
+  },
+  {
     version: '0.2.3', date: '12 Nov 2026', title: 'Ready for the plugin directory',
     intro: "Anthropic's directory reads a mod's source as written and holds anything it cannot account for. This release gives it nothing to hold.",
     groups: [
