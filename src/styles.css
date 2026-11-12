@@ -320,3 +320,11 @@
   }
   @media (max-width: 600px) { .top .btn-dark span, .crumb { display: none; } }
   .cl footer { border-top: 1px solid var(--line); }
+
+/* ---- legal pages ---- */
+.prose { max-width: 68ch; display: grid; gap: 12px; padding-block: 8px 48px; }
+.prose h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; margin: 20px 0 0; }
+.prose p, .prose li { color: var(--ink-2); font-size: 16px; line-height: 1.6; }
+.prose ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.prose li strong { color: var(--ink); }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }

@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: { main: 'index.html', changelog: 'changelog.html' },
+      input: { main: 'index.html', changelog: 'changelog.html', privacy: 'privacy.html', terms: 'terms.html' },
     },
   },
 })
