@@ -6,6 +6,17 @@ export type Release = { version: string; date: string; title: string; intro?: st
 // Newest first. Keep in step with CHANGELOG.md in the mod repository.
 export const RELEASES: Release[] = [
   {
+    version: '0.2.3', date: '12 Nov 2026', title: 'Ready for the plugin directory',
+    intro: "Anthropic's directory reads a mod's source as written and holds anything it cannot account for. This release gives it nothing to hold.",
+    groups: [
+      { kind: 'changed', items: [
+        'The two beeps are embedded in the source instead of shipped as .wav files, so the plugin contains no binary files.',
+        "Source rewritten to the directory's plain-call rules, with no change in behavior.",
+        'The README now lists every program the mod runs and why, the one model call it makes, and exactly what it submits as a prompt in listen mode.',
+      ] },
+    ],
+  },
+  {
     version: '0.2.2', date: '12 Nov 2026', title: 'Listening that actually hears you',
     intro: "Testing with the Mac's own voice as the speaker showed the recorder stopping after a fifth of a second, or never starting. This release is about that.",
     groups: [
