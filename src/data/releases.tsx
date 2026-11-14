@@ -6,6 +6,25 @@ export type Release = { version: string; date: string; title: string; intro?: st
 // Newest first. Keep in step with CHANGELOG.md in the mod repository.
 export const RELEASES: Release[] = [
   {
+    version: '0.3.1', date: '14 Nov 2026', title: 'After the audit',
+    intro: 'An independent adversarial review read every line against a written threat model. Twenty-two findings, two of them high. All of the real ones are fixed here.',
+    groups: [
+      { kind: 'fixed', items: [
+        '"Open in editor" uses code --goto or open -t, never plain open, so a file Claude wrote is shown in an editor and never launched.',
+        'The wake word matches only "Clausper", the spellings whisper produces for it, or "Claude". The old pattern also accepted "clamp" and "clap".',
+        'Path overrides must be absolute and outside the temp and project folders, so a repository cannot point the recorder at a file it ships.',
+        'Captures under a second are never auto-sent, and three voice turns in a row without typing drop back to the prompt box.',
+        'Transcripts keep what you said; only whisper\'s non-speech tags are removed. "Clausper, cancel" cancels; a bare "no" is sent as an answer.',
+        'Mute covers listen-mode prompts; fill appends instead of overwriting a draft; a reload mid-listen no longer sticks.',
+      ] },
+      { kind: 'changed', items: [
+        'The summary prompt neutralizes reply tags and quotes and tells the model to treat the reply as text.',
+        'git diff runs with external diff tools and the file monitor disabled; the shown diff is capped.',
+        'The privacy policy now names the GitHub API request the site makes for the star count.',
+      ] },
+    ],
+  },
+  {
     version: '0.3.0', date: '14 Nov 2026', title: 'Hardening the one thing that can hear you',
     intro: 'A mod that listens deserves a threat model. This release writes it down in SECURITY.md and closes the gaps it names.',
     groups: [
