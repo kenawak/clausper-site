@@ -6,6 +6,22 @@ export type Release = { version: string; date: string; title: string; intro?: st
 // Newest first. Keep in step with CHANGELOG.md in the mod repository.
 export const RELEASES: Release[] = [
   {
+    version: '0.3.0', date: '14 Nov 2026', title: 'Hardening the one thing that can hear you',
+    intro: 'A mod that listens deserves a threat model. This release writes it down in SECURITY.md and closes the gaps it names.',
+    groups: [
+      { kind: 'added', items: [
+        <>Wake word, on by default: in auto listen mode only a sentence that starts with "Clausper" or "Claude" is sent. Anything else goes to the prompt box for you to confirm. <code>/clausper wake off</code> disables it.</>,
+        <><code>/clausper private on</code>: no model call at all. Summaries are the reply's own opening sentences, so nothing leaves the machine.</>,
+        'SECURITY.md: what the mod runs, sends and submits, how to verify it from the source, and how to report.',
+      ] },
+      { kind: 'changed', items: [
+        <>The recorder and transcriber are looked up only in the package managers' folders or at <code>CLAUSPER_RECORDER</code> / <code>CLAUSPER_WHISPER</code>. PATH is never searched.</>,
+        'Each recording lives in a private mktemp folder that is deleted afterwards, instead of a predictable file in /tmp.',
+        "Stop ends only your own user's speech processes.",
+      ] },
+    ],
+  },
+  {
     version: '0.2.4', date: '12 Nov 2026', title: 'No binaries, no encoded data',
     groups: [
       { kind: 'changed', items: [
