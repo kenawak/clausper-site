@@ -8,7 +8,7 @@ export const FEATURES: Feature[] = [
   {
     label: 'turn.complete → say', icon: 'volume', title: 'Spoken summary',
     body: 'The opening sentence plays the moment Claude stops. Haiku writes the two sentences that follow while you listen. Short replies are read as they are.',
-    foot: 'macOS voice · /clausper voice Samantha',
+    foot: 'system voice or Kokoro · /clausper voice kokoro',
     shot: (<>
       <span className="i">⏺ Moved the redirect into the cookie callback and added a regression…</span>
       <span className="i">  ⎿  1,842 chars · 41 lines</span>
@@ -46,7 +46,7 @@ export const FEATURES: Feature[] = [
   },
   {
     label: 'rec · whisper-cli', icon: 'mic', title: 'Listen mode',
-    body: 'After the summary Clausper asks “What next?”, beeps, records until you pause, transcribes on your Mac, and sends the words as your prompt. Say “cancel” to skip a turn.',
+    body: 'After the summary Clausper asks “What next?”, beeps, records until you pause, transcribes on your machine, and sends the words as your prompt. Say “cancel” to skip a turn.',
     foot: '/clausper listen auto · fill · off',
     shot: (<>
       <span className="tl"><span>beep</span><span className="bar" /><span>pause 1.5 s</span></span>
@@ -57,20 +57,43 @@ export const FEATURES: Feature[] = [
     </>),
   },
   {
-    label: 'pane › turn detail', icon: 'key', title: 'No API key',
-    body: 'Summaries are a model call made by your Claude Code session, so they count against the subscription you already have. Nothing to sign up for, nothing to rotate.',
-    foot: 'Claude Code mod · hooks module',
+    label: '/clausper cost', icon: 'key', title: 'No API key, and the cost shown',
+    body: 'Summaries are one Haiku call made by your own Claude Code session, on the subscription you already have. The pane shows what each one used, well under a tenth of a cent at API prices.',
+    foot: 'short replies and private mode: no call at all',
     shot: (<>
-      <span><span className="i">b: back</span>  <span className="i">r: read this one</span></span>
       <span>Fixed the login redirect bug</span>
-      <span className="i">2s ago · 1,842 chars in the reply · summary in 1.4s</span>
-      <span className="wrap i">Haiku ran through your own session: no key, no separate bill.</span>
-      <span className="y">Needs you: <span style={{ color: '#e9e6df' }}>Should the old redirect test be deleted?</span></span>
+      <span className="i">2s ago · summary in 1.4 s · 2.3k tokens · $0.002</span>
+      <span className="i">/clausper cost</span>
+      <span>this session: <span className="a">14 summaries · $0.034</span></span>
+      <span className="i">today $0.071 · all time $0.42</span>
+    </>),
+  },
+  {
+    label: 'tts/kokoro.py', icon: 'waves', title: 'A voice that sounds human',
+    body: 'Kokoro is an open-weight neural voice that runs on your CPU. One command sets it up, each download checked against a pinned hash. After that it speaks fully offline.',
+    foot: '/clausper voice kokoro · af_heart · bm_george',
+    shot: (<>
+      <span className="i">/clausper voice kokoro</span>
+      <span className="i">  fetching kokoro-v1.0.onnx · 326 MB · sha256 ok</span>
+      <span className="i">  packages pinned by hash · ok</span>
+      <span className="g">Clausper voice set to Kokoro af_heart.</span>
+      <span className="cap">Hello. This is the new voice.</span>
+    </>),
+  },
+  {
+    label: 'keys/clausper-keys.swift', icon: 'tag', title: 'A key to stop it',
+    body: 'Press ⌃⌥S in any app and Clausper stops mid-sentence, even with the terminal in the background. Give mute, again and listen their own chords too.',
+    foot: '/clausper keys stop cmd+shift+s',
+    shot: (<>
+      <span className="i">/clausper keys</span>
+      <span>stop: <span className="a">⌃⌥S</span>   mute: <span className="a">⌃⌥M</span></span>
+      <span>again: <span className="i">off</span>   listen: <span className="i">off</span></span>
+      <span className="i">Helper: ready · no Accessibility permission needed</span>
     </>),
   },
   {
     label: '/clausper setup', icon: 'lock', title: 'Private by design',
-    body: 'Recording and transcription are local programs on your Mac. Clausper adds no network calls of its own; the only one is the request Claude Code already makes.',
+    body: 'Recording, transcription and the Kokoro voice are local programs on your machine. Clausper adds no network calls of its own; the only one is the request Claude Code already makes.',
     foot: 'MIT · github.com/kenawak/clausper',
     shot: (<>
       <span>recorder (sox rec): <span className="a">/opt/homebrew/bin/rec</span></span>
@@ -78,6 +101,17 @@ export const FEATURES: Feature[] = [
       <span>model: <span className="a">~/.clausper/models/ggml-base.en.bin</span></span>
       <span className="i">141 MB on disk · Metal · ~0.3 s per utterance</span>
       <span>Ready to listen.</span>
+    </>),
+  },
+  {
+    label: '~/.clausper/floor', icon: 'volume', title: 'Sessions take turns',
+    body: 'Run several Claude Code sessions at once. When two finish together, one speaks while the other waits, then names its project first so you know whose summary it is.',
+    foot: 'one voice at a time · one listener at a time',
+    shot: (<>
+      <span className="cap">Fixed the login redirect bug.</span>
+      <span className="i">  shop · speaking</span>
+      <span className="i">  weather-app · waiting for its turn</span>
+      <span className="cap">In weather app. The forecast cache now expires hourly.</span>
     </>),
   },
 ]
@@ -93,19 +127,23 @@ export const COMMANDS: Array<[string, ReactNode]> = [
   ['/clausper', 'Open the pane'],
   ['/clausper mute · unmute', 'Silence or restore speech'],
   ['/clausper again', 'Repeat the last summary'],
-  ['/clausper stop', 'Cut speech off'],
+  ['/clausper stop', <>Cut speech off; <code>⌃⌥S</code> from any app</>],
+  ['/clausper keys', 'Show or change the global shortcuts'],
+  ['/clausper cost', 'What summaries used: session, today, all time'],
   ['/clausper captions on · off', 'Show or hide the caption line'],
   ['/clausper listen', 'Listen once, right now'],
   ['/clausper listen auto · fill · off', 'Hands-free, prompt box only, or never'],
-  ['/clausper voice Samantha', <>Pick a system voice; <code>voices</code> lists them</>],
-  ['/clausper setup', 'Check the listening tools'],
+  ['/clausper voice kokoro', <>The natural voice; <code>voices</code> lists every voice</>],
+  ['/clausper private on · off', 'Skip the model call entirely'],
+  ['/clausper setup', 'Check the voice and listening tools'],
 ]
 
 export const FAQS: Array<[string, ReactNode]> = [
-  ['Does it cost extra?', 'No. Summaries are written by Haiku through your own Claude Code session, so they count against the subscription you already have. There is no API key to buy and no account to create.'],
-  ['Where does my voice go?', 'Nowhere. Recording uses sox and transcription uses whisper.cpp, both running on your Mac with a model stored in your home folder. Clausper adds no network calls of its own.'],
+  ['Does it cost extra?', <>No. Summaries are written by Haiku through your own Claude Code session, so they count against the subscription you already have. A summary is one to four thousand tokens, and <code>/clausper cost</code> shows exactly what they used. Short replies make no call at all.</>],
+  ['Where does my voice go?', 'Nowhere. Recording uses sox and transcription uses whisper.cpp, both running on your machine with a model stored in your home folder. The Kokoro voice runs locally too. Clausper adds no network calls of its own.'],
   ['Will it read me the whole reply?', 'No, that is the point. Short replies are read as they are. Long ones get the opening sentence at once, then a two-sentence summary plus anything Claude asked you. The full text stays in the terminal.'],
   ['What if it mishears me?', 'Say “cancel” to skip a turn. Use fill mode and Clausper puts your words in the prompt box instead of sending them, so you can check them first. The pane shows what it heard and for how long.'],
-  ['Does it work on Linux or Windows?', 'The pane, captions and change list work anywhere Claude Code runs. Speech uses the macOS system voice today, and listening is tested on macOS. Linux speech is on the list.'],
-  ['Can I pick the voice?', <>Yes. Run <code>/clausper voices</code> to list every voice installed on your Mac and <code>/clausper voice Samantha</code> to choose one. The choice is remembered.</>],
+  ['Does it work on Linux or Windows?', 'macOS and Linux. On Linux Clausper speaks with espeak-ng or Kokoro and plays audio through PipeWire, PulseAudio or ALSA. The global stop key is macOS only for now; /clausper stop works everywhere. Windows is not supported yet.'],
+  ['How do I make it stop talking?', <>Press <code>⌃⌥S</code> in any app on macOS, press <code>s</code> in the pane, or run <code>/clausper stop</code>. <code>/clausper keys stop cmd+shift+s</code> picks a different chord.</>],
+  ['Can I pick the voice?', <>Yes. <code>/clausper voice kokoro</code> switches to the natural Kokoro voice and sets it up once. <code>/clausper voices</code> lists every system and Kokoro voice, and <code>/clausper voice af_heart</code> picks one. The choice is remembered.</>],
 ]

@@ -6,6 +6,56 @@ export type Release = { version: string; date: string; title: string; intro?: st
 // Newest first. Keep in step with CHANGELOG.md in the mod repository.
 export const RELEASES: Release[] = [
   {
+    version: '0.5.0', date: '19 Nov 2026', title: 'A key to stop it, and a price on every summary',
+    intro: 'Reaching for the terminal to silence a long summary was the most common complaint. Now one chord does it from any app.',
+    groups: [
+      { kind: 'added', items: [
+        <>A global key to stop speech on macOS: <code>⌃⌥S</code>, from any app, even when the terminal is in the background. It stops every session that is speaking, listening or waiting for its turn.</>,
+        <><code>/clausper keys</code> shows and changes the shortcuts: <code>/clausper keys stop cmd+shift+s</code> rebinds stop, and <code>mute</code>, <code>again</code> and <code>listen</code> can get chords too.</>,
+        'The caption\'s stop button shows the chord.',
+        <>What each summary costs: the pane shows its tokens and dollars and the session's total in its header. <code>/clausper cost</code> totals this session, today and all time. Short replies and private mode make no call and cost nothing.</>,
+      ] },
+      { kind: 'fixed', items: [
+        'Stop pressed while a long reply\'s opening sentence plays also drops the summary and the listen that would follow.',
+      ] },
+      { kind: 'changed', items: [
+        'The shortcut helper is built on your Mac from its Swift source, never downloaded. It uses macOS hotkey registration, so it needs no Accessibility permission and sees only its own chords.',
+      ] },
+    ],
+    shot: (<>
+      <span><span className="i">Clausper</span> <span className="cap">Moved the redirect into the cookie callback and</span> <span className="i">[ stop ⌃⌥S ]</span></span>
+      <span className="i">  ⌃⌥S pressed in your editor · stopped</span>
+      <span className="i">/clausper cost</span>
+      <span>this session: <span className="a">14 summaries · 31.2k tokens · $0.034</span></span>
+      <span className="i">today $0.071 · all time $0.42 · 0.6 % of this session's cost</span>
+    </>),
+    caption: 'Stop from any app, and see what the summaries cost.',
+  },
+  {
+    version: '0.4.1', date: '17 Nov 2026', title: 'Kokoro sets itself up',
+    groups: [
+      { kind: 'changed', items: [
+        <><code>/clausper voice kokoro</code> fetches whatever is missing, once: uv, the model files and the pinned packages. Progress shows in the status line and the system voice keeps speaking until Kokoro is ready.</>,
+        'Every download is https only and checked against a SHA-256 pinned in the source before it is moved into place; a file that does not match is deleted.',
+      ] },
+    ],
+  },
+  {
+    version: '0.4.0', date: '16 Nov 2026', title: 'A natural voice, Linux, and sessions that take turns',
+    intro: 'The system voice does the job but sounds like a machine. Kokoro sounds close to a person and still runs on your computer.',
+    groups: [
+      { kind: 'added', items: [
+        <>Kokoro, an open-weight neural voice that runs locally: <code>/clausper voice kokoro</code>, or a voice name such as <code>/clausper voice af_heart</code>. Its audio streams, so the first sentence plays while the next is made.</>,
+        'Linux: speech with espeak-ng, Kokoro clips through pw-play, paplay, aplay or sox, and listening cues from sox.',
+        'Sessions take turns: when several Claude Code sessions finish together, one speaks while the others wait, and a session that waited names its project first.',
+        'If Kokoro cannot speak, the system voice says the rest and a toast says why.',
+      ] },
+      { kind: 'changed', items: [
+        'The Kokoro runner runs offline with its packages pinned by hash, from a private folder deleted afterwards.',
+      ] },
+    ],
+  },
+  {
     version: '0.3.1', date: '14 Nov 2026', title: 'After the audit',
     intro: 'An independent adversarial review read every line against a written threat model. Twenty-two findings, two of them high. All of the real ones are fixed here.',
     groups: [

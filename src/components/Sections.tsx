@@ -60,7 +60,7 @@ curl -L -o ~/.clausper/models/ggml-base.en.bin \\
 `}<span className="cm"># then, back in Claude Code</span>{`
 `}<span className="k">/clausper</span>{` setup
 `}<span className="k">/clausper</span>{` listen auto`}</pre></div>
-          <div className="note"><Icon name="info" /><span>macOS asks for microphone access the first time Clausper listens. Allow it for your terminal app. Speech needs macOS; the pane and captions work anywhere Claude Code runs.</span></div>
+          <div className="note"><Icon name="info" /><span>macOS asks for microphone access the first time Clausper listens. Allow it for your terminal app. On Linux, install espeak-ng and sox first. For the natural voice, run /clausper voice kokoro.</span></div>
         </div>
         <div className="cmds" aria-label="Commands">
           {COMMANDS.map(([cmd, what]) => (

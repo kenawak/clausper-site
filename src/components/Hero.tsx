@@ -52,7 +52,7 @@ export function Hero() {
           <CopyButton className="btn btn-dark" label="Copy" />
         </div>
         <div className="hero-foot mono">
-          <Wave /> <span>macOS · on your subscription · nothing leaves the machine</span>
+          <Wave /> <span>macOS & Linux · on your subscription · nothing leaves the machine</span>
           <a href="#install" className="more">set up listening <Icon name="arrow" size={14} /></a>
         </div>
       </section>
